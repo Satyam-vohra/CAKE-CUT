@@ -33,16 +33,4 @@ open index.html    # macOS
 xdg-open index.html # Linux
 
 
-<button onclick="downloadPage()">🎁 Download This Page</button>
-
-<script>
-  function downloadPage() {
-    const htmlContent = document.documentElement.outerHTML;
-    const blob = new Blob([htmlContent], { type: "text/html" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "HappyBirthday.html";
-    link.click();
-  }
-</script>
 
