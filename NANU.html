@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday My Baby Nanu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(to right, #ffddee, #ccffff);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #start, #scene {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff3399;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #0099cc;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #66ffcc;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #33cc99;
+    }
+
+    #scene {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .ground {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .cake {
+      width: 180px;
+      height: 100px;
+      background: linear-gradient(to bottom, pink, #ff66b2);
+      border-radius: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 15px #ff99cc;
+    }
+
+    .cake::before {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 20px;
+      background: #ff3399;
+      border-radius: 10px 10px 0 0;
+      top: 0;
+    }
+
+    .candle {
+      width: 6px;
+      height: 25px;
+      background: #333;
+      position: absolute;
+      top: -25px;
+      border-radius: 2px;
+    }
+
+    .flame {
+      width: 10px;
+      height: 10px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      left: -2px;
+      animation: flicker 0.3s infinite alternate;
+      box-shadow: 0 0 8px yellow;
+    }
+
+    @keyframes flicker {
+      from { transform: scale(1); opacity: 0.8; }
+      to { transform: scale(1.3); opacity: 1; }
+    }
+
+    .stickman {
+      position: absolute;
+      bottom: 0;
+      width: 100px;
+      height: 200px;
+      animation: walk 4s linear forwards;
+    }
+
+    @keyframes walk {
+      0%   { left: 0; }
+      100% { left: 50%; transform: translateX(-50%); }
+    }
+
+    .head {
+      width: 50px;
+      height: 50px;
+      background: #ffe0bd;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 25px;
+    }
+
+    .body {
+      position: absolute;
+      top: 50px;
+      left: 47px;
+      width: 6px;
+      height: 80px;
+      background: #000;
+    }
+
+    .arm-left, .arm-right {
+      width: 40px;
+      height: 5px;
+      background: #000;
+      position: absolute;
+      top: 60px;
+      transform-origin: left;
+    }
+
+    .arm-left { left: 10px; }
+    .arm-right { left: 50px; }
+
+    .knife {
+      width: 20px;
+      height: 5px;
+      background: silver;
+      position: absolute;
+      top: 60px;
+      left: 85px;
+      transform: rotate(20deg);
+      border-radius: 2px;
+      box-shadow: 1px 1px 2px #888;
+    }
+
+    .leg-left, .leg-right {
+      width: 5px;
+      height: 50px;
+      background: #000;
+      position: absolute;
+      top: 130px;
+    }
+
+    .leg-left { left: 35px; transform: rotate(15deg); }
+    .leg-right { left: 60px; transform: rotate(-15deg); }
+
+    .cut .arm-right {
+      transform: rotate(70deg);
+    }
+
+    .hug .arm-left {
+      transform: rotate(60deg);
+    }
+
+    .hug .arm-right {
+      transform: rotate(-60deg);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: confettiFall 3s linear infinite;
+      top: -10px;
+      z-index: 1000;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="start">
+    <h1>HAPPY BIRTHDAY MY BABY NANU</h1>
+    <h2>Age: 4 YEAR</h2>
+    <button onclick="startScene()">Next</button>
+  </div>
+
+  <div id="scene">
+    <h1>🎂 Watch Baby Cut and Hug the Cake 🎂</h1>
+    <div class="ground">
+      <div class="stickman" id="stickman">
+        <div class="head"></div>
+        <div class="body"></div>
+        <div class="arm-left"></div>
+        <div class="arm-right" id="armRight"></div>
+        <div class="knife"></div>
+        <div class="leg-left"></div>
+        <div class="leg-right"></div>
+      </div>
+      <div class="cake" id="cake">
+        <!-- 🎂 Candles -->
+        <div class="candle" style="left: 30px;"><div class="flame"></div></div>
+        <div class="candle" style="left: 80px;"><div class="flame"></div></div>
+        <div class="candle" style="left: 130px;"><div class="flame"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function startScene() {
+      document.getElementById("start").style.display = "none";
+      document.getElementById("scene").style.display = "flex";
+
+      setTimeout(() => {
+        const stickman = document.getElementById("stickman");
+
+        // Step 1: Cut cake
+        stickman.classList.add("cut");
+
+        // Step 2: Blow out candles
+        document.querySelectorAll('.flame').forEach(f => f.style.display = 'none');
+
+        // Step 3: Hug + Confetti
+        setTimeout(() => {
+          stickman.classList.remove("cut");
+          stickman.classList.add("hug");
+          launchConfetti();
+        }, 1500);
+      }, 4200);
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+        confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
