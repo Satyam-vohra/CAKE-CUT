@@ -1,5 +1,4 @@
-# 🎂 Happy Birthday CUTE PAGE🎉
-
+# 🎂 Happy Birthday CUTE PAGES 
 A cute and interactive HTML + CSS + JavaScript animated birthday celebration page designed for a 4-year-old baby named **Nanu**. It features:
 
 - 🎈 Beautiful gradient background
